@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 19, 2019 at 07:29 PM
--- Server version: 5.7.25-0ubuntu0.18.04.2
--- PHP Version: 7.2.15-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Generation Time: Feb 12, 2020 at 02:35 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -33,9 +35,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_user` (IN `userId` INT)  BEG
 delete from users where users_id=userId;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `get_user` (IN `userId` INT, OUT `firstName` VARCHAR(100), OUT `lastName` VARCHAR(100))  BEGIN
-SELECT first_name, last_name
-INTO firstName, lastName
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_user` (IN `userId` INT)  BEGIN
+SELECT *
 FROM users
 WHERE users_id = userId;
 END$$
@@ -87,6 +88,8 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users`
   MODIFY `users_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

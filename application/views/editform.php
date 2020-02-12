@@ -15,7 +15,7 @@
 			</h3>
 			<hr>
 			<?php extract($user); ?>
-			<form method="POST" action="<?php echo base_url(); ?>index.php/users/update/<?php echo $id; ?>">
+			<form method="POST" action="<?php echo base_url(); ?>index.php/users/update/<?php echo $users_id; ?>">
 				<div class="form-group">
 					<label>firstname:</label>
 					<input type="text" class="form-control" value="<?php echo $first_name; ?>" name="first_name">
@@ -23,6 +23,7 @@
 				<div class="form-group">
 					<label>lastname:</label>
 					<input type="text" class="form-control" value="<?php echo $last_name; ?>" name="last_name">
+					<input type="hidden"  value="<?php echo $users_id; ?>" name="users_id">
 				</div>
 				<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Update</button>
 			</form>

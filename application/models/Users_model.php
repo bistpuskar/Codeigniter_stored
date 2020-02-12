@@ -22,20 +22,20 @@
 
 
 		public function getuser($users_id){
-			$get_user_stored_proc = "CALL get_user(?, ?)";
-			$query = $this->db->get_where('$get_user_stored_proc',array('users_id'=>$users_id));
+			$get_user_stored_proc = "CALL get_user($users_id)";
+			$query = $this->db->query($get_user_stored_proc);
 			return $query->row_array();
 		}
 
-		public function update_user($user, $users_id){
-			$update_user_stored_proc = "CALL update_user(?, ?)";
-			$this->db->where('$update_user_stored_proc', $users_id);
-			return $this->db->update('users', $user);
+		public function update_user($users_id,$first_name,$last_name){
+			$update_user_stored_proc = "CALL update_user('$users_id','$first_name','$last_name')";
+			return $this->db->query($update_user_stored_proc);
+			
 		}
 
 		public function delete_user($users_id){
-			$delete_user_stored_proc = "CALL delete_user(?)";
-			$result=$this->db->query('$delete_user_stored_proc', array('users_id'=>$users_id));
+			$delete_user_stored_proc = "CALL delete_user($users_id)";
+			return $this->db->query($delete_user_stored_proc);
 		
 		}	
 
